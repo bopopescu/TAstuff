@@ -1,0 +1,45 @@
+<div>
+	<div>
+		<h2 style="display: inline-block; padding: 10px;">The Wall</h2>		
+		<h4 style="display: inline-block; padding: 10px;">Welcome {{ context['user']['first'] }}</h4>
+		<a href="/logout/" style="display: inline-block; padding: 10px;">Log Out</a>
+	</div>
+	<div>
+		<div>
+			<h6>Post Message!</h6>
+			<form action="/message/create" method="post">
+				<input type="text area" name="message" placeholder="Enter your message for the wall here!">
+				<input type="submit" value="POST!">
+			</form>
+		</div>
+		<div>
+			<p>should be stuff here</p>
+			{% for thing in context %}
+				<p>{{ thing }}</p>
+			{% endfor %}
+			<p>users</p>
+			{{ context['all_users'] }}
+			<p>comments</p>
+			{{ context['comments'] }}
+			<p>messages</p>
+			{{ context['messages'] }}
+			{% if context['all_messages'] %}
+				<p>aaaaaaaaye</p>
+			{% endif %}
+			{{ context['messages'] }}
+			{% for message in context['all_messages'] %}
+			{{ message }}
+			<p>stuff?</p>
+				<div>
+					<p>{{ message['User_id'] }} - {{ message['created_at'] }}</p>
+					<p>{{ message['message'] }}</p>
+					<form>
+						<input type="hidden" name="comment_id" value="{{ message['id'] }}">
+						<input type="text" name="comment" placeholder="Comment Here">
+						<input type="submit" value="comment!">
+					</form>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

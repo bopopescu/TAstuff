@@ -1,0 +1,7 @@
+<div>
+{{ query }}
+<p>{{ num_links }}</p>
+{% for x in range(1, num_links+1) %}
+	<a href="/leads/show/{{ x }}" style="display: inline-block;">{{ x }}</a> {% if x is not num_links %} | {% endif %}
+{% endfor %}
+</div>

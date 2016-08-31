@@ -1,0 +1,13 @@
+{% if notes %}
+	{% for note in notes %}
+		<div>
+			<h4>{{note['title']}}</h4>
+			<a href="" id="delete_noter">Delete</a>
+			
+			<form id="edit_noter">
+				<input type="hidden" name="note_id" value="{{ note['id'] }}">
+				<input type="text area" name="note_description" value="{{ note['description'] }}">
+			</form>
+		</div>
+	{% endfor %}
+{% endif %}

@@ -1,0 +1,9 @@
+<div>
+	<a href="<%= pokemon._id %>/edit">edit</a>
+	<a href="/">index</a>
+	<h6><%= pokemon.name %></h6>
+	<p><%= pokemon.quote %></p>
+	<form action="<%= pokemon._id %>" method="post">
+		<input type="submit" value="delete">
+	</form>
+</div>

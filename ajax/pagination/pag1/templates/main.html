@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- X : show all leads -->
+	<!-- X : paginate all leads -->
+	<!-- 3 : form submission yields correct results -->
+	<!-- 4 : paginate the searches -->
+	<!-- 4 : jquery it -->
+	<title>Jax Pag</title>
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<!-- 	0 - on load
+	0a. do a blank form search
+	0b. load links partial 
+	0c. load table partial using page 0
+
+	1 - on search
+	1a.	do a form based search 
+	1b. load new links partial
+	1c. load new table partial
+
+	2 - on paginationing
+	2a. load table partial using up-to-date page number -->
+
+		<script>
+		// 0
+		$(document).ready(function(){
+			
+		})
+	</script>
+</head>
+<body>
+<div>
+	<h4>Jax pagination!</h4>
+	<form id="formy_form" action="/leads/search/" method="POST">
+		Name: <input type="text" name="name">
+<!-- 		Started After:<input type="date" name="after_date" value="null">
+		Started Before: <input type="date" name="before_date" value="null"> -->
+		<input type="submit" value="paginate!">
+	</form>
+	{% if results %}
+		{{ results }}
+	{% endif %}
+	  
+</div>
+<div>
+	<!-- links will be a partial...later -->
+	<div id="links">
+		{% for link in session['links_obj'] %}
+			<a href="{{ session['links_obj'][link] }}" style="display: inline-block;">{{ link }}</a>
+		{% endfor %}
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>First</th>
+				<th>Last</th>
+				<th>Reg. Date</th>
+				<th>eMail</th>
+			</tr>
+		</thead>
+		<tbody>
+		<!-- request/response cycle is goofing you up i think. session is sent as part of request, so updating it doesn't help choose a relevant page on backend.what we need to do is maybe make the links forms, well on jquery we can set it so that link updates session and then sends the request for the table partial..........How do we get up to date information to here? Using a GET request in the link? can we use that var to basically set the table on the backend, so this thing just renders a single thing eachtiem instead ofhtinking? Without using jquery partials of course...jquery solves that trickyness ......Pass the template the page number!!!, duh-->
+			<!-- from leads_to_show -->
+
+			{% for lead in the_page %}
+				<tr>
+						<td>{{ lead['id'] 		}}</td>
+						<td>{{ lead['first'] 	}}</td>
+						<td>{{ lead['last'] 	}}</td>
+						<td>{{ lead['regdate'] 	}}</td>
+						<td>{{ lead['email'] 	}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+</body>
+</html>

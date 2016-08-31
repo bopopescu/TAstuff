@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Chatroom
+	</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type ="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script>
+		$(document).ready(function(){
+			var user = prompt('who u?', 'a peep');
+			var socket = io.connect();
+			var curr_user;
+
+			// emits
+			// I joined
+			socket.emit("peep_joined",{user: user});
+			// I message
+			$('#chatform').on('submit', function(){
+				socket.emit('peep_sent_message',{message: $("#chat_message").val(), user: curr_user})
+				$("#chat_message").val("");
+				return false;
+			})
+			socket.on("somebody_joined", function(data){
+				$("#chatroom").append("<p>" + data.user + " joined the room </p>");
+			})
+			socket.on("all_messages", function(data){
+				curr_user = data.curr_user;
+				var messages = data.messages;
+				console.log(messages);
+				for (var i = 0; i<messages.length; i++){
+					$("#chatroom").append("<p>"+messages[i].name + ":" + messages[i].message +"</p><br>");
+				}
+			})
+
+			socket.on("somebody_messaged", function(data){
+				console.log(data);
+				console.log(data.message);
+				$("#chatroom").append("<p>" + data['user'] + ":" + data['new_message'] + "</p>")
+			})
+
+		});
+	</script>
+</head>
+<body>
+	<div id="chatroom" style="border: 2px black solid; min-height: 50px; width: 300px; ">
+		
+	</div>
+	<div>
+		<form id="chatform">
+			Chat: <input id="chat_message" type="text">
+			<input type="submit" value="message away!">
+		</form>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<div>
+	<div>
+		<h2>Welcome to the Wall!</h2>
+		<div style="display: inline-block; vertical-align: top;">
+		{% with messages = get_flashed_messages() %}
+			{% if messages %}
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+			<h4>Register</h4>
+			<form action="register/" method="POST">
+				first name: <input type="text" name="first"><br>
+				last name: <input type="text" name="last"><br>
+				email: <input type="text" name="email"><br>
+				password: <input type="password" name="password"><br>
+				confirm password: <input type="password" name="confirm_password"><br>
+				<input type="submit" value="register!">
+			</form>
+		</div>
+		<div style="display: inline-block; vertical-align: top;">
+			<h4>Login</h4>
+			<form action="/login/" method="POST">
+				email: <input type="text" name="email"><br>
+				password: <input type="password" name="password"><br>
+				<input type="submit" value="login!">
+			</form>
+		</div>
+	</div>
+</div>
