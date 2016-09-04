@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div>
+	<form>
+		<label  for="name">Name</label>
+		<input id="name" type="text" name="name">
+		<label for="start">Start</label>
+		<input id="start" type="date" name="start_date">
+		<label for="end">End</label>
+		<input id="end" type="date" name="end_date">
+		<input type="submit" value="submit">
+	</form>
+	<div id="links">
+		{% for link in links %}
+			<a href="{{ link.url }}" style="display: inline-block;">{{ link.val }}</a>
+		{% endfor %}
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<th>i.d.</th>
+				<th>First</th>
+				<th>Last</th>
+				<th>Email</th>
+				<th>Regdate</th>				
+			</tr>
+		</thead>
+		<tbody>
+		{% for lead in leads %}
+			<tr>
+				<td>{{ lead.id }}</td>
+				<td>{{ lead.first }}</td>
+				<td>{{ lead.last }}</td>
+				<td>{{ lead.email }}</td>
+				<td>{{ lead.regdate }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+</body>
+</html>

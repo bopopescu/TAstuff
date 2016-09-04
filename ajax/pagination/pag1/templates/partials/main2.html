@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script>
+		$('document').ready(function(),{
+
+		})
+	</script>
+</head>
+<body>
+	<div>
+		<div id="links_box">
+			{% for i in range(0, len(links)) %}
+				<a href="{{ links[i] }}" style="display: inline-block;">{{ i+1 }}</a>
+			{{ endfor }}
+		</div>
+		<div id="leads_table">
+			<table>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>First</th>
+						<th>last</th>
+						<th>Regdate</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for lead in leads %}
+						<tr>
+							<td>{{ lead['id'] 		}}</td>
+							<td>{{ lead['first']	}}</td>
+							<td>{{ lead['last'] 	}}</td>
+							<td>{{ lead['regdate']	}}</td>
+							<td>{{ lead['email']	}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>
