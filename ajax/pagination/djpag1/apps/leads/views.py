@@ -1,23 +1,34 @@
 from django.shortcuts import render
+from django.views.generic import View
 from .models import Lead
 import math
 
 # Create your views here.
-def main(request):
-	all_leads = Lead.objects.all()
+class Main(View):
+	# get loads on initial page load
+	def get(self, request):
 
-	leads_list = [lead for lead in all_leads]
+		# NOTE TO SELF NEED TO SESSIONIFY THIS BIDNITZ
+		all_leads = Lead.objects.all()
 
-	num_links = int(math.ceil(len(all_leads)/3.0))
+		leads_list = [lead for lead in all_leads]
 
-	link_object = {}
-	for i in range(num_links):
-		link_object[str(i)]='/leads/' +  str(i)
+		num_links = range(1,int(math.ceil(len(all_leads)/3.0)) + 1)
+		# ['', '/leads/1', '/leads/2', '/leads/3']
+
+		links_list = [{'url':'/leads/' + str(i), 'val': i} for i in num_links]
 
 
-	context = {
-		'leads': leads_list,
-		'links': link_object
-	}
 
-	return render(request, 'main.html', context)
+		context = {
+			'leads': leads_list,
+			'links': links_list
+		}
+
+		return render(request, 'main.html', context)
+
+	# post loads on search
+	def post(self, request):
+		pass
+
+# for dat pagination juju

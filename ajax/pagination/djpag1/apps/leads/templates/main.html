@@ -5,7 +5,7 @@
 </head>
 <body>
 <div>
-	<form>
+	<form action="/leads/" method="post">
 		<label  for="name">Name</label>
 		<input id="name" type="text" name="name">
 		<label for="start">Start</label>
@@ -16,7 +16,7 @@
 	</form>
 	<div id="links">
 		{% for link in links %}
-			<a href="{{ link.url }}" style="display: inline-block;">{{ link.val }}</a>
+			<a href=" {{ link.url }} ">{{ link.val }}</a>
 		{% endfor %}
 	</div>
 	<table>
