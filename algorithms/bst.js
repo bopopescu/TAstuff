@@ -13,6 +13,7 @@ function bstNode(val){
 function bst(){
 	this.root = null;
 	this.add = add;
+	this.height = hieight;
 }
 
 
@@ -42,3 +43,17 @@ function add(val){
 
 
 // height
+// use recursive max l / max r
+// if l < r return l + 1 else return r + 1
+// returns height with self = node
+function height(){
+	if !(this.root){return 0;}
+	var curr = this.root;
+	if !(curr.left) && !(curr.right){
+		return 1;
+	} else {
+		right = curr.left.height() + 1;
+		left = curr.right.height() + 1;
+
+	}
+}

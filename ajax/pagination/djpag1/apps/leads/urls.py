@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
 	url(r'^$', Main.as_view()),
-	url(r'^/leads/$', Main.as_view())
-	url(r'^leads/(?P<page>)', views.paginate )
+	url(r'^leads/$', Main.as_view()),
+	url(r'^leads/(?P<page>)', views.paginate ),
 ]

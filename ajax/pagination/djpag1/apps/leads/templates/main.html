@@ -6,14 +6,18 @@
 <body>
 <div>
 	<form action="/leads/" method="post">
+		{% csrf_token %}
 		<label  for="name">Name</label>
 		<input id="name" type="text" name="name">
-		<label for="start">Start</label>
+<!-- 		<label for="start">Start</label>
 		<input id="start" type="date" name="start_date">
 		<label for="end">End</label>
-		<input id="end" type="date" name="end_date">
+		<input id="end" type="date" name="end_date"> -->
 		<input type="submit" value="submit">
 	</form>
+	{% for i in exp %}
+		{{ i.first }}
+	{% endfor %}
 	<div id="links">
 		{% for link in links %}
 			<a href=" {{ link.url }} ">{{ link.val }}</a>
