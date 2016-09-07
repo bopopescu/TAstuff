@@ -13,7 +13,7 @@ function bstNode(val){
 function bst(){
 	this.root = null;
 	this.add = add;
-	this.height = hieight;
+	this.height = height;
 }
 
 
