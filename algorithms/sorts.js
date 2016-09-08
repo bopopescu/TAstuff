@@ -53,7 +53,22 @@ var bobby = bubSort(test_array);
 
 // INSERTION SORT a.k.a. card sort
 function insertSort(array){
-
+	if !(array){ return 'nothing to sort homie';}
+	// array up to our point must be sorted
+	// most recent thing
+	// outer array marks what is sorted up to
+	for ( var i = 1; i<array.length-1; i++){
+		var reserve = array[i];
+		// inner loop backsorts our shit by shifting stuff
+		// if thing to left is smaller is done shifting
+		var j = i;
+		while (j>0 && array[j-1] >= reserve){
+			array[j] = array[j-1];
+			j--;
+		}
+		array[j]=reserve;
+	}
+	return array;
 }
 
 console.log('insertness');

@@ -1,0 +1,28 @@
+<div>
+	<div>
+		{% with messages as get_flashed_messages %}
+			{% if messages %}
+				{% for message in messages %}
+					<p>{{ message }}</p>
+				{% endfor %}
+			{% endif %}
+		{% endwith %}
+		<h4>Log In</h4>
+		<form action="/login/" method="post">
+			email: <input type="text" name="email">
+			password: <input type="password" name="passwird">
+			<input type="submit" value="login">
+		</form>
+	</div>
+	<div>
+		<h4>Register</h4>
+		<form action="/register/" method="post">
+			first: <input type="text" name="first">
+			last: <input type="text" name="last">
+			email: <input type="text" name="email">
+			password: <input type="password" name="password">
+			c pw: <input type="password" name="c_password">
+			<input type="submit" value="register">
+		</form>
+	</div>
+</div>

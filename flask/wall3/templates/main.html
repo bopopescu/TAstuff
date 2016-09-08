@@ -1,0 +1,30 @@
+<div>
+	<p>hi {{context.user['first'] }}</p>
+	<div>
+		<h4>leave a message</h4>
+		<form action="/create/message" method="post">
+			<input type="text area" name="message" placeholder="Leave A Message Here">
+			<input type="submit" value="message">
+		</form>
+	</div>
+	<div>
+		{% for message in context.messages %}
+			<div>
+				<p>{{ message['first'] }} on {{ message['created_at'] }}</p>
+				<p>{{ message['message'] }}</p>
+				<div>
+					{% for comment in context.comments %}
+						{% if comment['messages_id'] == message['id'] %}
+							<p>{{ comment['first'] }} on {{ comment['created_at'] }}</p>
+						{% endif %}
+					{% endfor %}
+					<form action="/comment/create" method="post">
+						<input type="hidden" name="message_id" value="{{ message['id'] }}">
+						<input type="text area" name="comment" placeholder="comment here">
+						<input type="submit" value="comment">
+					</form>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>

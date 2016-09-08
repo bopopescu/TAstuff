@@ -1,0 +1,12 @@
+<div>
+	<p>update form</p>
+	<form>
+		name: <input type="text" name="name" value="<%= pokemon.name %>" placeholder="<%= pokemon.name %>">
+		quote: <input type="text" name="quote" value="<%= pokemon.quote %>" placeholder="<%= pokemon.quote %>">
+		<input type="submit" value=":}">
+	</form>
+	<form action="/delete/<%= pokemon._id %>" method="post">
+		<input type="submit" value=":(">
+	</form>
+	<a href="/">home</a>
+</div>

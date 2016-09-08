@@ -1,0 +1,10 @@
+<div>
+	<h2>edito</h2>
+	<a href="/">home</a>
+	<form action="/pokemons/update/<%= pokemon._id %>" methods='post'>
+		name: <input type="text" name="name">
+		quote: <input type="text" name="quote">
+		<input type="submit" value="update :)">
+	</form>
+	<a href="/pokemon/delete/<%= pokemon._id %>">:(</a>
+</div>

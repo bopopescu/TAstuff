@@ -1,0 +1,9 @@
+<div>
+	<h4>index</h4>
+	<a href="/pokemons/new">New</a>
+
+	<p>pokemons</p>
+	<% for (var i = 0; i < pokemons.length; i++){ %>
+		<a href="/pokemons/<%= pokemons[i]['id'] %>"><%= pokemons[i]['name']</a>
+	<% } %>
+</div>

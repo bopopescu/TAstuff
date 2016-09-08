@@ -1,3 +1,4 @@
+// push pop shift unshift insert
 function node(val){
 	this.value = val;
 	this.next = null;

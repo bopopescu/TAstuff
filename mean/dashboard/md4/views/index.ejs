@@ -1,0 +1,10 @@
+<div>
+	<h2>index</h2>
+	<a href="/pokemons/new">New</a>
+	<% for (pokemon in pokemons){ %>
+		<div>
+			<a href="/pokemons/<%= pokemon._id %>"><%= pokemon.name %></a> 
+			quote: <%= pokemon.quote %>
+		</div>
+	<% } %>
+</div>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		chatroom
+	</title>
+	<script>
+		$('document').ready(function(){
+			var user = prompt('who u?', 'a peep');
+			var socket = io.connect();
+			var curr_user;
+			socket.emit('i_joined',{user: user});
+
+			socket.on('thank_for_joining', function(data){
+				curr_user = data.user;
+				var messages = data.messages;
+				for (var i = 0; i<messages.length; i++){
+					$('#chatroom').append("<p>"+message[i].name+" said "+message[i].message+"</p><br>");
+				}
+			});
+
+			socket.on('a_user_joined', function(data){
+				$('chatroom').append('<p>'+data.user+' joined the chatroom</p><br>');
+			});
+
+			socket.on('somebody_messaged', function(data){
+				$('#chatroom').append("<p>"+data.user+" says: "+data.new_message+"</p><br>");
+			});
+
+			$('#chatform').on('submit', function(){
+				socket.emit('user_messaged', {message: $('#chat_message').val(), user:curr_user});
+				$('#chat_message').val("");
+				return false;
+			});
+
+
+		})
+	</script>
+</head>
+<body>
+<div id="chatroom">
+	
+</div>
+<form id="chatform">
+	<input type="text" name="message" id="chat_message">
+	<input type="submit" value="message it!">
+</form>
+</body>
+</html>

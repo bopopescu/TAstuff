@@ -6,7 +6,7 @@
 			
 			<form id="edit_noter">
 				<input type="hidden" name="note_id" value="{{ note['id'] }}">
-				<input type="text area" name="note_description" value="{{ note['description'] }}">
+				<input type="text area" name="note_description" value="{{ note['description'] }}" placeholder="{{ note['description'] }}">
 			</form>
 		</div>
 	{% endfor %}
