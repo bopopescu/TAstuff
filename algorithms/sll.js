@@ -6,12 +6,17 @@ function node(val){
 
 function sLL(){
 	this.head = null;
+	this.add = add;
 }
 
-sLL.prototype.add = function(node){
-	if (!this.head){
+function add(node){
+	if !(this.head){
 		this.head = node;
-	}else{
-		this.head.next = node;
+		return this;
 	}
+	var curr = this.head;
+	while (!curr.next){
+		curr = curr.next;
+	}
+
 }

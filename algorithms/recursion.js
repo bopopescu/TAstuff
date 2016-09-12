@@ -31,6 +31,10 @@ function rFib2(num){
 	function tail(num, prev, prev2){
 		if !(prev){ prev = 1};
 		if !(prev2){prev2 = 0};
+		if (num > 0){
+			tail(num-1, prev + prev2, prev);
+		}
+		return prev + prev2;
 		
 	}
 }

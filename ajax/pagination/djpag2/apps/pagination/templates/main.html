@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Pages on Pages on Pages on Pages
+	</title>
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script>
+
+	</script>
+
+</head>
+<body>
+<div>
+	<form id="filter_form" action="/" method="post">
+
+		
+	</form>
+	<div>
+		
+	</div>
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>I.D.</th>
+					<th>First</th>
+					<th>Last</th>
+					<th>Email</th>
+					<th>Regdate</th>
+				</tr>
+			</thead>
+			{% for lead in request.session.pages[{{ lead_page }}]}
+				<tr>
+					<td>{{ lead['id'] }}</td>
+					<td>{{ lead['first'] }}</td>
+					<td>{{ lead['last'] }}</td>
+					<td>{{ lead.email }}</td>
+					<td>{{ lead.regdate }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<div>
+	<h2>Ayyyeee, its a wall</h2>
+	<h4>hi! {{session['user'].first }}</h4>
+	<form action="/message/create" method="POST">
+		<input type="text area" name="message" placeholder="Leave a message">
+		<input type="submit" value="message">
+	</form>
+	{% for message in context.messages %}
+		<div>
+			<p>{{ message['first'] }} on {{ message['created_at']</p>
+			<p>{{ message['message']</p>
+			{% for comment in context.comments %}
+				{% if comment.messages_id == message.id %}
+					<div>
+						<p>{{ comment['first'] }} on {{ comment['created_at'] }}</p>
+						<p>{{ comment['comment'] }}</p>
+					</div>
+				{% endif %}
+			{% endfor %}
+			<form action="/comment/create" method="POST">
+				<input type="hidden" name="m_id" value="{{ messasge.id }}">
+				<input type="text area" name="comment" placeholder="Leave a Comment here">
+				<input type="submit" value="comment!">
+			</form>
+		</div>
+	{% endfor %}
+</div>

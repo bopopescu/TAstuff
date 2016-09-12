@@ -1,0 +1,31 @@
+<div>
+	<h2>welcome to wall</h2>
+	{% with messages as get_flashed_messages %}
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{ message }}</p>
+			{% endfor %}
+		{% endif %}
+	{% endwith %}
+	<div>
+		<div>
+			<h4>Register</h4>
+			<form action="/register/" method="POST">
+				first: <input type="text" name="first">
+				last: <input type="text" name="last">
+				email: <input type="text" name="email">
+				password: <input type="password" name="password">
+				confirm pw: <input type="password" name="c_password">
+				<input type="submit" value="do it">
+			</form>
+		</div>
+		<div>
+			<h4>Log In</h4>
+			<form action="/login/" method="POST">
+				email: <input type="text" name="email">
+				password: <input type="password" name="password">
+				<input type="submit" value="do it">
+			</form>
+		</div>
+	</div>
+</div>

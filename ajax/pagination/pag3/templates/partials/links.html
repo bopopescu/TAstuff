@@ -1,0 +1,8 @@
+<div>
+	<h2>hi!</h2>
+	{% if links %}
+	{% for i in range(links|length) %}
+		<a href="{{ links[i] }}" style="display: inline-block;">{{ i + 1 }}</a>
+	{% endfor %}
+	{% endif %}
+</div>

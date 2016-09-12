@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pages on Pages on Pages</title>
+	<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			// make blank form query
+			$.post('/getslinks/', $('#filter_form').serialize(), function(response){
+				// render links object
+				$('#links_div').html(response);
+				// get the leads from the page 1(this is intiial load...)
+				$.post('/getsleads/0', $('#filter_form').serialize(), function(response){
+					// render dem leads
+					$('#leads_div').html(response);
+				});
+			});
+			// make filled in form query
+			$('#filter_form').submit(function(e){
+				e.preventDefault();
+				// this request is responsible for setting the session leads pages
+				$.post('/getslinks/', $(this).serialize(), function(response){
+					$('#links_div'),html(response);
+				});
+				$.post('/getsleads/0',$(this).serialize(), function(response){
+					$('#leads_div').html(response);
+				});
+				return false;
+			})
+			// get a different page
+			$('a').click(function(e){
+				e.preventDefault();
+				// this href is /getsleads/xxx
+				$.post($(this).attr('href'), $('#filter_form').serialize(), function(response){
+					$('#leads_div').html(response);
+					console.log('got here 4');
+				});
+				return false;
+			})
+
+
+		});
+	</script>
+</head>
+<body>
+<div>
+	<form id="filter_form">
+		Name: <input type="text" name="name" value="">
+	</form>
+	<div id="links_div">
+	<!-- links go here -->
+	</div>
+	<div id="leads_div">
+	<!-- leads go here -->
+	</div>
+</div>
+</body>
+</html>
