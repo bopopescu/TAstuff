@@ -20,7 +20,7 @@
 				e.preventDefault();
 				// this request is responsible for setting the session leads pages
 				$.post('/getslinks/', $(this).serialize(), function(response){
-					$('#links_div'),html(response);
+					$('#links_div').html(response);
 				});
 				$.post('/getsleads/0',$(this).serialize(), function(response){
 					$('#leads_div').html(response);
@@ -28,12 +28,12 @@
 				return false;
 			})
 			// get a different page
-			$('a').click(function(e){
+			$(document).on('click', 'a',function(e){
+				console.log('hohohohohohoh');
 				e.preventDefault();
 				// this href is /getsleads/xxx
 				$.post($(this).attr('href'), $('#filter_form').serialize(), function(response){
 					$('#leads_div').html(response);
-					console.log('got here 4');
 				});
 				return false;
 			})
@@ -46,6 +46,7 @@
 <div>
 	<form id="filter_form">
 		Name: <input type="text" name="name" value="">
+		<input type="submit" value="?">
 	</form>
 	<div id="links_div">
 	<!-- links go here -->

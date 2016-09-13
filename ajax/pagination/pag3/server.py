@@ -35,15 +35,9 @@ def links():
 
 @app.route('/getsleads/<page>', methods=['POST', 'GET'])
 def leads(page):
-	print('got here 1')
-	print (page)
-	print (request)
-	print (request.form)
-	print (request.form.values)
-	print ('2')
 	query = "SELECT * FROM leads WHERE first LIKE concat('%', :name, '%') LIMIT :num, 4"
 	data = { 
-		'name': 'a',
+		'name': request.form['name'],
 		'num': int(page)
 	 }
 	print(int(page))
@@ -53,7 +47,6 @@ def leads(page):
 		lead['regdate']=lead['regdate'].isoformat()
 
 	leads = list(all_leads)
-	print('got here')
 
 	return render_template('partials/leads.html', leads = leads)
 

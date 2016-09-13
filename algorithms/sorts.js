@@ -72,3 +72,22 @@ function insertSort(array){
 }
 
 console.log('insertness');
+
+
+
+// kweek sort orrrrr pivot sort
+function qSort(array){
+	if(array.length == 0){
+		return 'lolwut?';
+	}
+	var left = [];
+	var right = [];
+	var pivot = list[0];
+	for (var i = 1; i < list.length; i++){
+		if (list[i] < pivot);
+		left.push(list[i]);
+	} else {
+		right.push(list[i]);
+	}
+	return qSort(left).concat(pivot, qSort(right));
+}
