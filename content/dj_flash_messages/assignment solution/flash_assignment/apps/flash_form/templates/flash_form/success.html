@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div style="display: inline-block; vertical-align: top;">
+	<h4>Flashied Messages</h4>
+	<a href="/"><button>Do iT aGaIn</button></a>
+</div>
+<div style="display: inline-block; vertical-align: top; border: 2px solid black;">
+	<div id="INFO" style="border: 2px solid black; vertical-align: top;">
+		<h4>this is a thing for all messages</h4>
+
+	</div>
+		<div id="SUCCESS" style="border: 2px solid black; vertical-align: top;">
+		<h4>this is for success messages</h4>
+		{% if messages %}
+			{% for message in message %}
+				{% if 'success' in message.tags %}
+					<p>{{ message.message }</p>
+				{% endif %}
+			<p>{{ message }}</p>				
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
+</body>
+</html>

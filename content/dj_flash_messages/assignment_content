@@ -1,0 +1,9 @@
+In this assignment we are looking to practice displaying different types of flashed messages specifically where we want them. Additionally, we are going to add our own message level and and an option to change the minimum level of forms that will be displayed.
+
+![wireframe](https://codingdojo2013.mybalsamiq.com/projects/dj_flash_assignment/edit/MasterMind%20Playing)
+
+
+
+level 1: display the default levels' messages
+level 2: include the custom tag flash message
+level 3: include a custom level + level restriction

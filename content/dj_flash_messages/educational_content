@@ -1,0 +1,56 @@
+#Flash messages
+
+(documentation:)[https://docs.djangoproject.com/en/1.9/ref/contrib/messages/]
+
+###RECAP: 
+One time messages. "Allows you to store messages in one request & retrieve them for display in a subsequent(usually next) request"
+
+###Overview
+In django, flashed messages are part of the messages app that is included in the generic django-admin startproject command. When used, a message object is added to the request object(via session/cookie) that is readily available for use in views or templates in subsequent requests. Each flash message is an instance of the Message class which has the following attributes:
+
+				__message: the actual message's text
+				level: integer representation of message level
+				__tags: string that combines messages extra and level tags space-delimited
+				__extra_tags: custom string tags for this message
+				level_tag: string tag representing level
+
+In regular use, only the message, tags, and extra_tags are going to be directly interacted with. For more on the level and leve_tag attributes, see below. What's important to note here is that you can effectively categorize your messages using the extra_tags. 
+
+Regular use of flash messages is pretty open ended. The most common cases are to use it for alerting users of form field errors, success messages, warnings, and errors. To reiterate, anytime you need to alert a user of something *hopefully* only once, a flash message is great, effective method.
+
+###Usage
+In your views:
+	from django.contrib import messages
+	- _creation: you can add a message to be flashed by using this handy-dandy little line:
+
+	messages.add_message(request, messages.INFO, 'yourmessagehere')
+
+	if you are using a default message-level, youcan use:
+	messages.<messagelevel>(request, 'yourmessagehere')
+
+	-display in template:
+		step 1: check if messages
+		step 2: ITERATE through messages. iteration clears the messages from storage
+		{% if messages %}
+			{% for message in messages %}
+				<p>{{ message }} 
+					{% if message.tags %}
+					has these tags: {{message.tags }}
+					{% endif %}</p>
+			{% endfor %}
+		{% endif %}
+
+
+
+
+flash messages with form:
+	- to add an error associated with a specific field in a form use this in your views.py
+
+	- there is a non-field errors category that you can use with a form as well 
+
+
+###Next Level...
+__Message __Level: Sets the level of messages that will be displayed. Different types of messages have different levels of importance(represented by an integer). Each page has a minimum level of messages that can be displayed(default is INFO when deployed). It isn't something we need to worry about toying with too much, the big application of this is that in development the minimum-level is DEBUG, which lets you see those wonderful error messages and tracebacks. In production, when your website hits errors, you won't actually see anything unless you tell django to render an error or allow errors messages through.
+
+As with basically everything in django, you can add custom levels in your views.
+
