@@ -9,18 +9,74 @@
 	<a href="/"><button>Do iT aGaIn</button></a>
 </div>
 <div style="display: inline-block; vertical-align: top; border: 2px solid black;">
-	<div id="INFO" style="border: 2px solid black; vertical-align: top;">
-		<h4>this is a thing for all messages</h4>
 
-	</div>
-		<div id="SUCCESS" style="border: 2px solid black; vertical-align: top;">
-		<h4>this is for success messages</h4>
+	<div>
+		<h4>information message</h4>
 		{% if messages %}
-			{% for message in message %}
-				{% if 'success' in message.tags %}
-					<p>{{ message.message }</p>
+			{% for message in messages %}
+				{% if 'info' in message.tags %}
+					<p>{{ message }}</p>
 				{% endif %}
-			<p>{{ message }}</p>				
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div>
+		<h4>error message</h4>
+		{% if messages %}
+			{% for message in messages %}
+				{% if 'error' in message.tags %}
+					<p>{{ message }}</p>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div>
+		<h4>success message</h4>
+		{% if messages %}
+			{% for message in messages %}
+				{% if 'success' in message.tags %}
+					<p>{{ message }}</p>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div>
+		<h4>warning message</h4>
+		{% if messages %}
+			{% for message in messages %}
+				{% if 'warning' in message.tags %}
+					<p>{{ message }}</p>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div>
+		<h4>crucial message</h4>
+		{% if messages %}
+			{% for message in messages %}
+				{% if 'crucial' in message.tags %}
+					<p>{{ message }}</p>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div>
+		<h4>warning message</h4>
+		{% if messages %}
+			{% for message in messages %}
+				{% if 'warning' in message.tags %}
+					<p>{{ message }}</p>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+	<div>
+		<h4>happy message</h4>
+		{% if messages %}
+			{% for message in messages %}
+				{% if 'happy' in message.tags %}
+					<p>{{ message }}</p>
+				{% endif %}
 			{% endfor %}
 		{% endif %}
 	</div>

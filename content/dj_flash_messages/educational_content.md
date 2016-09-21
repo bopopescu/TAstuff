@@ -41,7 +41,7 @@ __Display__: you can view a requests messages
 
 Display in **template**:
 * Step 1: check if messages
-* Step 2: ITERATE through messages. *Iteration clears the messages from storage*
+* Step 2: ITERATE through messages. *Iteration clears the messages from storage in next request*
 * This example prints each message and any tags associated with it
 
 

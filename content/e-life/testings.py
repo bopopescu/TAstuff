@@ -1,1 +1,1 @@
-print [range(0,11)]
+print [i for i in xrange(0,11)]
