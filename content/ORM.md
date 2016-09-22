@@ -1,0 +1,14 @@
+#What is the ORM?!?! Where did my SQL go!?!?!
+
+At this point, you've probably had your first experiences with django's ORM and the transition away from MySQLConnector.py + MYSQLWorkbench in flask to the sleeker Model.objects.all() & co. This is great!...at first. Then some more interesting stuff starts to happen. What is a queryset? What are/is objects? And what does it do? Why are there so many underscores!? Who made this stuff? These are great things to be thinking, so let's explore the ORM a little bit more.
+
+####ORM
+ORM stands for Object Relationship Mapping. Let's break it down: Object (models) Relationship (relations between models) Mapping (representation). So, it's django's representation of the relationships between models. So witha little paraphrasing, ORM is djangos representation of how model objects relate to eachother. What is nifty about this, is it allows us to use django commands instead of SQL commands to dig through our models and their connections. Re-stated, we can treat models like **OBJECTS**, which means OOP concepts can be applied to our db models and queries. What this means is instead of sending comments and blogs to our front-end, looping through eachblog, and then looping through ALL of the comments and only displaying the relevant ones, we can just send our blogs over there and render *their* comments using OOP principles. woot! [Stackoverflow has thoughts too! Read comments and similar posts for more info.](http://stackoverflow.com/questions/398134/what-are-the-advantages-of-using-an-orm)
+
+
+
+_Now, I'm gonna be linking to the django docs quite a bit, because all the information is there, it's just organized for reference not learning. This is gonna be like a transcription, so credit to where credit is due. To keep our links relevant, I'm just going to use the example [models/db](https://docs.djangoproject.com/en/1.10/topics/db/queries/#making-queries)._
+
+####How ORM OOP-ifys the models
+If you've been paying attention, you'll have seen that our models are objects inheriting from the models.Model class. That means they are objects. As a framework, django will do things behind the scenes to make our lives "easier". no sarcasm. promise. One of these things is that for each model a __[Model Manager](https://docs.djangoproject.com/en/1.10/topics/db/managers/#managers)__ is created that includes functions/methods for working with the model that it is attached to. When you make a model in django, it comes with a built in manager called objects. So Model.__objects__.all() is going to the base manager associated with Model, and calling its .all() functionality. Make sense? Quick aside: Models can have their own methods to add *row-level functionality* and the Manager add *table-level* functionality. The docs have tons of information on them.
+
