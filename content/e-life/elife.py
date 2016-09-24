@@ -8,6 +8,7 @@ plan = ["####################",
 		"#     ##           #",
 		"#                  #",
 		"####################"]
+# in next implementation change x and y in to row/column for readings
 
 class Vector(Object):
 	def __init__(self, x, y):
@@ -35,10 +36,8 @@ class Grid(Object):
 	def forEach(self, f, context):
 		for y in range(0, self.height):
 			for x in range(0, self.width):
-				value = this.space[x + y * self.width]
+				value = self.space[x + y * self.width]
 				if value is not None:
-					# this is javascript :(
-					# supposed to be sneaky because 'this/self' should be new vector
 					f.call(context, value, new Vector(x,y))
 
 directions = {
