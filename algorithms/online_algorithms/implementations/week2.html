@@ -5,13 +5,30 @@
 // Upon exiting, display user's name, number of questions answered, and number correct in console
 
 // Get the users name!
-<!DOCTYPE html>
 <html>
 <head>
 	<title>Week 2 Challenge!</title>
 	<script type="text/javascript">
 		var user = prompt('whats yo name?', 'Rob Boss');
-		var question array
+		var correct = 0;
+		var question_array = [
+			["Whats in my pocket?", "a ring"],
+			["what is the meaning of life?", "42"],
+			["Is programmin fun?", "yes"],
+			["Seahawks or Niners?", "seahawks"]
+		]
+		for(var i = 0; i < question_array.length; i++){
+			var response = prompt(question_array[i][0], 'cancel');
+			var answer = question_array[i][1];
+			if(response.lowercase() == answer){
+				correct++;
+				console.log(correct);
+			} else if (response.lowercase() == 'cancel' 
+					or reponse.lowercase() == 'q'){
+				break;
+			}
+		}
+		console.log(user + " got " + correct + " out of " + question_array.length + " questions correct.");
 	</script>
 </head>
 <body>

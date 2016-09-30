@@ -16,7 +16,7 @@ class Vector(Object):
 		self.y = y
 
 	def add(self, other):
-		return new Vector(self.x + other.x, self.y + other.y)
+		return Vector(self.x + other.x, self.y + other.y)
 
 class Grid(Object):
 	def __init__(self, height, width):
@@ -25,7 +25,7 @@ class Grid(Object):
 		self.height = height
 
 	def isInside(self, vector):
-		return 0 <= vector.x <= width and 0<= vector.y height
+		return (0 <= vector.x <= width and 0<= vector.y <= height)
 
 	def get(self, vector):
 		return this.space[vector.x + (this.width * vector.y)]
@@ -38,23 +38,23 @@ class Grid(Object):
 			for x in range(0, self.width):
 				value = self.space[x + y * self.width]
 				if value is not None:
-					f.call(context, value, new Vector(x,y))
+					f(context, value)
 
 directions = {
-	'n': new Vector(0, -1),
-	'ne': new Vector(1,-1),
-	'e': new Vector(1, 0 ),
-	'se': new Vector(1,1),
-	's':new Vector(0,-1),
-	'sw': new Vector(-1,1),
-	'w': new vector(-1, 0),
-	'nw': new Vector(-1, -1)
+	'n': Vector(0, -1),
+	'ne': Vector(1,-1),
+	'e': Vector(1, 0 ),
+	'se': Vector(1,1),
+	's':Vector(0,-1),
+	'sw': Vector(-1,1),
+	'w': vector(-1, 0),
+	'nw': Vector(-1, -1)
 }
 
 def elementFromChar(legend, ch):
 	if ch == "":
 		return None;
-	element = new legend[ch]()
+	element = legend[ch]()
 	element.originChar = ch
 	return element
 
@@ -66,21 +66,71 @@ def charFromElement(element):
 
 class World(Object):
 	def __init__(self, map, legend):
-		self.grid = new Grid(len(map[0]), len(map))
+		self.grid = Grid(len(map[0]), len(map))
 		self.legend = legend
 		# learn up on this bit..
 		for y, row in enumerate(map):
 			for x in range(0,len(row)):
-				grid.set(new Vector(x, y), elementFromChar(legend, row[x]))
+				grid.set(Vector(x, y), elementFromChar(legend, row[x]))
 
 	def toString(self):
 		output = ""
 		for y in range(0,self.grid.height):
 			for x in range(0,self.grid.width):
-				element = self.grid.get(new Vector(x, y))
+				element = self.grid.get(Vector(x, y))
 				output.append(charFromElement(element))
 			output.append('\n')
 		return output
+
+	def turn (self):
+		acted = [];
+		self.grid.forEach(lambda (critter, vector): 	
+			try:
+				acted.index(critter)
+			except:
+				acted.append(critter)
+				self.letAct(critter, vector)
+
+	def letAct(self, critter, vector):
+		action = critter.act(View(self, vector))
+		if action and action.type === 'move':
+			dest = self.checkDestination(action, vector)
+			if dest and self.grid.get(dest) == None:
+				self.grid.set(vector, None)
+				self.grid.set(dest, critter)
+
+
+
+	def checkDestination(self, action,  vector):
+		if directions.hasOwnProperty(action.direction):
+			dest = vector.plus(directions[action.direction])
+			if self.grid.isInside(dest):
+				return dest 
+
+class View(Object):
+	def __init__(self, world, vector):
+		self.world = world
+		self.vector = vector 
+
+	def look(self, dir):
+		target = self.vector.plus(directions[dir])
+		if self.grid.isInside(target):
+			return charFromElement(self.grid.isInside(target))
+		else:
+			return '#'
+
+	def findAll(self, ch):
+		found = []
+		for dir in directions:
+			if self.look(dir) is ch:
+				found.append(dir)
+		return found
+
+	def find(self, ch):
+		found = self.findAll(ch)
+		if len(found) == 0:
+			return None
+		return randomElement(found)
 
 
 
@@ -101,6 +151,7 @@ class Bouncey(Object):
 		self.direction = randomElement(directionNames)
 
 	def act(self, view):
+		pass
 		
 	
 
