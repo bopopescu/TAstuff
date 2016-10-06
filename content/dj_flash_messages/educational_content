@@ -30,7 +30,7 @@ In your views:
 
 	-display in template:
 		step 1: check if messages
-		step 2: ITERATE through messages. iteration clears the messages from storage
+		step 2: ITERATE through messages. iteration clears the messages from the request
 		{% if messages %}
 			{% for message in messages %}
 				<p>{{ message }} 
