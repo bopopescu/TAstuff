@@ -1,0 +1,19 @@
+1) hi!
+2) singly linked lists?! why?
+	- Que es?
+	-pros
+		+ dynamically sized(language thing)
+		+ insertion/removal functions EZ
+	-cons
+		- random access is hard
+3) how to?
+	- linear v abstract data types
+	- OOP
+4) OOP
+	- words!
+	- instance, class, this,
+	  new, methods, properties
+	- "pointers"
+5) build sll and slnode
+6) add a node to a list
+7) length of a list

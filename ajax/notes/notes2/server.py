@@ -45,6 +45,6 @@ def delete_note():
 	mysql.query_db(query, data)
 	query = "SELECT * FROM notes"
 	all_notes = mysql.query_db(query)
-	retun render_template('partials/notes.html', notes=all_notes)
+	return render_template('partials/notes.html', notes=all_notes)
 
 app.run(debug=True)
