@@ -1,0 +1,137 @@
+function nodeList() {
+  this.head = null;
+  this.append = append;
+  this.addFront = addFront;
+  this.removeFront = removeFront;
+  this.listContains = listContains;
+  this.returnFront=returnFront;
+  this.size = size;
+}
+function listNode(val) {
+  this.value = val;
+  this.next = null;
+}
+function addFront(val) {
+  var n = new listNode(val);
+  if (!this.head) {
+    this.head = n;
+  }
+  else {
+    n.next = this.head;
+    this.head = n;
+  }
+  return this;
+}
+function removeFront() {
+  // don't do anything unless there is at least 1 node
+  if (this.head) {
+    if (this.head.next === null) {
+      this.head = null;
+    }
+    else {
+      this.head = this.head.next;
+    }
+  }
+  return this;
+}
+function returnFront() {
+  if (!this.head) {
+    return null;
+  }
+  return this.head.value;
+}
+function size() {
+  if (!this.head) {
+    len = 0;
+  }
+  else {
+    len = 1;
+  }
+  var cursor = this.head;
+  while(cursor.next){
+    cursor = cursor.next;
+    len++;
+  }
+  return len;
+}
+function append(val){
+  var n = new listNode(val);
+  if (!this.head) {
+    this.head = n;
+  }
+  else {
+    var cursor = this.head;
+    while(cursor.next){
+      cursor = cursor.next;
+    }
+    cursor.next = n;
+  }
+  return this;
+}
+function listContains(aValue) {
+  if (!this.head) {
+    return null;
+  }
+  else {
+    times = 0;
+  }
+  var cursor = this.head;
+  if (cursor.value === aValue) {
+    times = 1;
+  }
+  while(cursor.next){
+    if (cursor.next.value === aValue) {
+      times++;
+    }
+    cursor = cursor.next;
+  }
+  return times
+}
+function length(nodeList) {
+  if (nodeList.head === null) {
+    return 0
+  }
+  len = 1;
+  var cursor = nodeList.head;
+  while(cursor.next){
+    cursor = cursor.next;
+    len++;
+  }
+  return len;
+}
+function length2(node) {
+  console.log((node instanceof listNode));
+  console.log(!(node instanceof listNode));
+
+  if (!(node instanceof listNode)) {
+    len = 1;
+    var cursor = node;
+    while(cursor.next){
+      cursor = cursor.next;
+      len++;
+    }
+  }
+  else {
+    return 0;
+  }
+  return len;
+}
+console.log("Bob")
+bob = new nodeList();
+bob.append(3).append(4).append(3);
+bob.addFront(100);
+console.log(bob.listContains(3));
+console.log(bob.listContains(33));
+console.log(bob.returnFront());
+console.log(bob.head.value)
+console.log("Sam")
+sam = new nodeList();
+console.log(sam.listContains(4));
+console.log(sam.returnFront());
+console.log("bob.size()="+bob.size());
+x=length(bob);
+console.log("X="+x);
+x=length(sam);
+console.log("X="+x);
+console.log(length2(bob.head))
+console.log(length2(sam.head))

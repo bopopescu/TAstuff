@@ -61,3 +61,21 @@ function zip2(arr1, arr2){
 var bob = [1,3,5]
 var ross = [2,4,6,8]
 zip2(bob,ross);
+
+// shuffle
+// fischer-yates, from https://bost.ocks.org/mike/shuffle/
+function fyshuffle(array){
+	var m = array.length, t, i;
+	// while there are elements in need...
+	while(m){
+		// pick random element
+		i = Math.floor(Math.random() * m--);
+
+		// swap it with the current element
+		t = array[m];
+		array[m] = array[i];
+		array[i] = t;
+	}
+	return array;
+}
+
